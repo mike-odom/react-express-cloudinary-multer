@@ -26,6 +26,7 @@ router.post('/', multerUpload.single('file'), (req, res) => {
   // Send the file to Cloudinary
   // resource_type should be "video" for audio files!
   // https://cloudinary.com/documentation/image_upload_api_reference
+  // `.end(req.file.buffer)` in this case is just passing in your buffer and indicating there won't be any further writes to the stream.
   cloudinary.uploader.upload_stream({ resource_type: "video" }, cloudinaryDone).end(req.file.buffer);
 
   // After the upload is completed, this callback gets called
