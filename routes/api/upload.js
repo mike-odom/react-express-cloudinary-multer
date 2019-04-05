@@ -1,4 +1,4 @@
-const cloudinary = require('cloudinary');
+const cloudinary = require('cloudinary').v2;
 const axios = require('axios');
 const multer = require('multer');
 
@@ -26,12 +26,12 @@ router.post('/', multerUpload.single('file'), (req, res) => {
   // Send the file to Cloudinary
   // resource_type should be "video" for audio files!
   // https://cloudinary.com/documentation/image_upload_api_reference
-  cloudinary.uploader.upload_stream(cloudinaryDone, { resource_type: "video" }).end(req.file.buffer);
+  cloudinary.uploader.upload_stream({ resource_type: "video" }, cloudinaryDone).end(req.file.buffer);
 
   // After the upload is completed, this callback gets called
-  function cloudinaryDone(result) {
-    if (result.error) {
-      console.log("Error in cloudinary.uploader.upload_stream\n", result.error);
+  function cloudinaryDone(error, result) {
+    if (error) {
+      console.log("Error in cloudinary.uploader.upload_stream\n", error);
       return;
     }
 
