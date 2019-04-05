@@ -10,6 +10,8 @@ The front-end React app will auto-reload as it's updated via webpack dev server,
 
 There's no database functionality here, but it does setup Sequelize
 
+The Cloudify upload code was copied and modified from a tutorial here: https://medium.com/ecmastack/uploading-files-with-react-js-and-node-js-e7e6b707f4ef
+
 ##
 
 To get this example working, you'll need to add a .env file with:
